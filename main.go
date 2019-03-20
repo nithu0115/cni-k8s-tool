@@ -48,7 +48,7 @@ func actionRegistryList(c *cli.Context) error {
 	})
 }
 
-func actionIPGc(c *cli.Context) error {
+func actionIPgc(c *cli.Context) error {
 	return lib.LockfileRun(func() error {
 
 		reg := &client.Registry{}
@@ -122,7 +122,7 @@ func main() {
 		{
 			Name:   "ip-gc",
 			Usage:  "Free all IPs that have remained unused for a given time interval",
-			Action: actionIPGc,
+			Action: actionIPgc,
 			Flags: []cli.Flag{
 				cli.DurationFlag{Name: "free-after",
 					Value: 0 * time.Second},
