@@ -1,0 +1,23 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cni-k8s-tool-ip-gc
+  namespace: kube-system
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            k8s-app: cni-k8s-tool-ip-gc
+        spec:
+          containers:
+          - name: cni-k8s-tool
+            image: cni-k8s-tool:v0.1
+            imagePullPolicy: Always
+            args:
+            - /cni-k8s-tool
+            - ip-gc
+            - --free-after=1s
+          restartPolicy: Never
